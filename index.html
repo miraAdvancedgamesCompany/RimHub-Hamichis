@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player - RimHub</title>
+  <style>
+    /* Global styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #0078A0; /* Portuguese blue */
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    header nav {
+      margin-top: 0.5rem;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    header nav a:hover {
+      color: #ffdd57; /* Highlight hover color */
+    }
+
+    /* Video player container */
+    .video-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 800px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Thumbnail */
+    .thumbnail {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+
+    /* Video */
+    video {
+      width: 100%;
+      height: auto;
+      display: none; /* Hide video initially */
+    }
+
+    /* Video information */
+    .video-info {
+      margin-top: 1rem;
+      text-align: left;
+      width: 100%;
+      max-width: 800px;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .video-info h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #0078A0; /* Portuguese blue */
+    }
+
+    .video-info p {
+      margin: 0.5rem 0 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #0078A0; /* Portuguese blue */
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer a {
+      color: #ffdd57;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Social media icons */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      margin: 0 0.5rem;
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      background-color: #333;
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #ffdd57;
+      color: black;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header nav a {
+        font-size: 0.9rem;
+        margin: 0 0.5rem;
+      }
+
+      .video-wrapper,
+      .video-info {
+        max-width: 100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Rim Hub</h1><!--
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html">About</a>
+      <a href="index.html">Contact</a>
+    </nav>-->
+  </header>
+
+  <!-- Video Player Section -->
+  <div class="video-container">
+    <!-- Video Wrapper -->
+    <div class="video-wrapper">
+      <!-- Thumbnail -->
+      <img 
+        src="main/Thumbnail.jpeg" 
+        alt="Video Thumbnail" 
+        class="thumbnail" 
+        id="thumbnail"
+      >
+
+      <!-- Video Player -->
+      <video id="video" controls>
+        <source src="main/video.MOV" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Video Information -->
+    <div class="video-info">
+      <h2>Hamichi's Corner! RELESED 🐹</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula libero a lacus viverra, vitae facilisis lorem aliquet.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 RimHub. Designed with ❤️ by <a href="index.html">LaLova</a>.</p>
+
+    <!-- Social Media Icons
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" title="Facebook">F</a>
+      <a href="https://twitter.com" target="_blank" title="Twitter">T</a>
+      <a href="https://instagram.com" target="_blank" title="Instagram">I</a>
+      <a href="https://youtube.com" target="_blank" title="YouTube">Y</a>
+    </div>-->
+  </footer>
+
+  <script>
+    // JavaScript to handle thumbnail click and video display
+    const thumbnail = document.getElementById('thumbnail');
+
+    const video = document.getElementById('video');
+
+    thumbnail.addEventListener('click', () => {
+      // Hide the thumbnail
+      thumbnail.style.display = 'none';
+      // Show the video and start playing
+      video.style.display = 'block';
+      video.play();
+    });
+
+  </script>
+
+</body>
+</html>
